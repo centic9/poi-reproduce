@@ -25,7 +25,7 @@ TBD
 
 Remove some unnecessary output:
 
-    ./runAll.sh 2>&1 | grep -v "^WARNING:" | grep -v "^> Task :" | grep -v "File leak detector installed" | grep -v "^----$" > /tmp/output.txt
+    ./runAll.sh 2>&1 | grep -v "^WARNING:" | grep -v "^> Task :" | grep -v "File leak detector installed" | grep -v "^----$" | grep -v "^> Run with --" | grep -v "^* Get more help at https://help.gradle.org$" > /tmp/output.txt
 
 ## Summary
 
