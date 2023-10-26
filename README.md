@@ -15,9 +15,22 @@ TBD
     cd poi-rerproduce
     ./gradlew check
 
-### Run it
+### Run single check for single version
 
-    ./runall.sh
+    ./gradlew runClose -PpoiVersion=3.17 -PcloseTest=stream
+
+### Run all checks
+
+    ./runAll.sh
+
+Remove some unnecessary output:
+
+    ./runAll.sh 2>&1 | grep -v "^WARNING:" | grep -v "^> Task :" | grep -v "File leak detector installed" | grep -v "^----$" > /tmp/output.txt
+
+## Summary
+
+See https://docs.google.com/spreadsheets/d/1naqkg7rvXGctJMoZ4blWb0n4vseuoD4g0cU7PQpwwOU/edit#gid=0
+for a summary of running this experiment with the various versions of Apache POI
 
 ## Support this project
 
