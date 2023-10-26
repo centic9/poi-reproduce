@@ -1,0 +1,63 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'application'
+
+mainClassName = 'org.dstadler.poi.TestCloseBehavior'
+version = '1.0'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Reproduce some behavior of Apache POI against different versions', 'Implementation-Version': archiveVersion
+    }
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+    // maven { url 'https://repository.apache.org/content/groups/staging/'}
+}
+
+// this is the version of the jar-files of Apache POI that are used for testing
+if (!project.hasProperty('poiVersion')) {
+	ext.poiVersion = '5.2.4'
+}
+
+dependencies {
+    implementation 'org.apache.poi:poi:' + poiVersion
+    implementation 'org.apache.poi:poi-ooxml:' + poiVersion
+    // ooxml-full is needed for now, a later version of POI may allow to use ooxml-lite instead
+    implementation 'org.apache.poi:poi-ooxml-full:' + poiVersion
+    implementation 'org.apache.poi:poi-scratchpad:' + poiVersion
+    /*implementation files('/tmp/poi-bin-5.1.0/lib/commons-collections4-4.4.jar')
+    implementation files('/tmp/poi-bin-5.1.0/lib/commons-math3-3.6.1.jar')
+    implementation files('/tmp/poi-bin-5.1.0/ooxml-lib/commons-compress-1.21.jar')
+    implementation files('/tmp/poi-bin-5.1.0/ooxml-lib/xmlbeans-5.0.2.jar')
+    implementation files('/tmp/poi-bin-5.1.0/poi-5.1.0.jar')
+    implementation files('/tmp/poi-bin-5.1.0/poi-ooxml-5.1.0.jar')
+    //implementation files('/tmp/poi-bin-5.1.0/poi-ooxml-lite-5.1.0.jar')
+    implementation files('/tmp/poi-bin-5.1.0/poi-ooxml-full-5.1.0.jar')
+    implementation files('/tmp/poi-bin-5.1.0/poi-scratchpad-5.1.0.jar')*/
+
+	implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+wrapper {
+    gradleVersion = '7.6.1'
+}
+
+jacoco {
+    toolVersion = '0.8.10'
+}
