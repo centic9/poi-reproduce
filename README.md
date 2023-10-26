@@ -5,7 +5,11 @@ Small project to test things against different versions of Apache POI.
 
 ## How it works
 
-TBD
+The test-application `TestCloseBehavior` simply opens and closes documents in various 
+different ways.
+
+We use a local build of [file-leak-detector](https://github.com/jenkinsci/lib-file-leak-detector) when running
+this application so that file-handle leaks are reported as part of the output.
 
 ## Use it
 
@@ -14,6 +18,11 @@ TBD
     git clone https://github.com/centic9/poi-rerproduce.git
     cd poi-rerproduce
     ./gradlew check
+
+### Prepare for running
+
+Check out file-leak-handler, build it locally and adjust te path to it
+in `build.gradle`.
 
 ### Run single check for single version
 
