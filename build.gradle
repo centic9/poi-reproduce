@@ -19,12 +19,12 @@ tasks.withType(JavaCompile) {
 
 repositories {
     mavenCentral()
-    // maven { url 'https://repository.apache.org/content/groups/staging/'}
+    maven { url 'https://repository.apache.org/content/groups/staging/'}
 }
 
 // this is the version of the jar-files of Apache POI that are used for testing
 if (!project.hasProperty('poiVersion')) {
-	ext.poiVersion = '5.2.4'
+	ext.poiVersion = '5.2.5'
 }
 
 if (!project.hasProperty('closeTest')) {
