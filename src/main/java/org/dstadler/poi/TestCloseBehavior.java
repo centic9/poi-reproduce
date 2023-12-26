@@ -20,7 +20,7 @@ public class TestCloseBehavior {
 
         String mode = args[0];
         System.out.println();
-        System.out.println("Running mode: " + mode + " for version " + Version.getVersion());
+        System.out.println("Running mode: " + mode + " for version " + Version.getVersion() + " and Java " + System.getProperty("java.version"));
 
         switch (mode) {
             case "stream":
