@@ -13,7 +13,11 @@ jar {
     }
 }
 
-sourceCompatibility = JavaVersion.VERSION_11
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
