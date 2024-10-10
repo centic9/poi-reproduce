@@ -14,7 +14,7 @@ public class TestCloseBehavior {
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
         if (args.length == 0) {
-            System.out.println("Usage: TestCloseBehavior <mode>");
+            System.err.println("Usage: TestCloseBehavior <mode>");
             System.exit(1);
         }
 

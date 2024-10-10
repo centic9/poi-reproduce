@@ -19,8 +19,8 @@ java {
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
 }
 
 repositories {
@@ -39,6 +39,14 @@ if (!project.hasProperty('closeTest')) {
 
 if (!project.hasProperty('poiDir')) {
 	ext.poiDir = '/opt/poi'
+}
+
+if (!project.hasProperty('compressTemp')) {
+	ext.compressTemp = 'true'
+}
+
+if (!project.hasProperty('sharedStringTable')) {
+	ext.sharedStringTable = 'true'
 }
 
 dependencies {
@@ -86,11 +94,30 @@ tasks.register('runClose', JavaExec) {
 
 	jvmArgs = [
 			'-Xmx512m',
-			'-javaagent:/opt/file-leak-detector/target/file-leak-detector-1.19-SNAPSHOT-jar-with-dependencies.jar=http=0,strong,excludes=/opt/apache/poi/git-svn/file-leak-detector.exclude,dumpatshutdown',
+			//'-javaagent:/opt/file-leak-detector/target/file-leak-detector-1.19-SNAPSHOT-jar-with-dependencies.jar=http=0,strong,excludes=/opt/apache/poi/git-svn/file-leak-detector.exclude,dumpatshutdown',
 			'-XX:+HeapDumpOnOutOfMemoryError', '-XX:HeapDumpPath=/tmp'
 	]
 
 	mainClass = 'org.dstadler.poi.TestCloseBehavior'
 	args = [closeTest]
+	classpath = sourceSets.main.runtimeClasspath
+}
+
+tasks.register('runWriteFile', JavaExec) {
+	dependsOn compileJava
+	description = 'Writes a file via SXSSF, this allows to compare resulting files between versions'
+
+	jvmArgs = [
+			'-Xmx512m',
+			//'-javaagent:/opt/file-leak-detector/target/file-leak-detector-1.19-SNAPSHOT-jar-with-dependencies.jar=http=0,strong,excludes=/opt/apache/poi/git-svn/file-leak-detector.exclude,dumpatshutdown',
+			'-XX:+HeapDumpOnOutOfMemoryError', '-XX:HeapDumpPath=/tmp'
+	]
+
+	mainClass = 'org.dstadler.poi.TestSXSSFWorkbook'
+	args = [
+			"C:/Temp/test-" + poiVersion + "-" + compressTemp + "-" + sharedStringTable + ".xlsx",
+			compressTemp,
+			sharedStringTable
+	]
 	classpath = sourceSets.main.runtimeClasspath
 }
