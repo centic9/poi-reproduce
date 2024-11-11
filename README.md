@@ -1,5 +1,5 @@
-[![Build Status](https://github.com/centic9/poi-rerproduce/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/centic9/poi-rerproduce/actions)
-[![Gradle Status](https://gradleupdate.appspot.com/centic9/poi-rerproduce/status.svg?branch=master)](https://gradleupdate.appspot.com/centic9/poi-rerproduce/status)
+[![Build Status](https://github.com/centic9/poi-reproduce/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/centic9/poi-reproduce/actions)
+[![Gradle Status](https://gradleupdate.appspot.com/centic9/poi-reproduce/status.svg?branch=main)](https://gradleupdate.appspot.com/centic9/poi-reproduce/status)
 
 Small project to test things against different versions of Apache POI.
 
@@ -15,8 +15,8 @@ this application so that file-handle leaks are reported as part of the output.
 
 ### Grab and build it
 
-    git clone https://github.com/centic9/poi-rerproduce.git
-    cd poi-rerproduce
+    git clone https://github.com/centic9/poi-reproduce.git
+    cd poi-reproduce
     ./gradlew check
 
 ### Prepare for running
@@ -49,11 +49,11 @@ If you find this project useful and would like to support work on it, you can [S
 
 ### Build it and run tests
 
-    cd poi-rerproduce
+    cd poi-reproduce
     ./gradlew check jacocoTestReport
 
 #### Licensing
 
-* poi-rerproduce is licensed under the [BSD 2-Clause License].
+* poi-reproduce is licensed under the [BSD 2-Clause License].
 
 [BSD 2-Clause License]: https://www.opensource.org/licenses/bsd-license.php
