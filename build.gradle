@@ -26,6 +26,7 @@ tasks.withType(JavaCompile).configureEach {
 repositories {
     mavenCentral()
     maven { url 'https://repository.apache.org/content/groups/staging/'}
+    // for testing upcoming log4j versions: maven { url 'https://repository.apache.org/content/repositories/orgapachelogging-1308/'}
 }
 
 // this is the version of the jar-files of Apache POI that are used for testing
@@ -48,6 +49,22 @@ if (!project.hasProperty('compressTemp')) {
 if (!project.hasProperty('sharedStringTable')) {
 	ext.sharedStringTable = 'true'
 }
+
+/*
+if (!project.hasProperty('log4jApi')) {
+	ext.log4jApi = '2.24.0'
+}
+if (!project.hasProperty('log4jCore')) {
+	ext.log4jCore = '2.24.0'
+}
+
+// use this if you want to force versions of some third party library for testing
+configurations.configureEach {
+	resolutionStrategy {
+		force 'org.apache.logging.log4j:log4j-api:' + log4jApi
+		force 'org.apache.logging.log4j:log4j-core:' + log4jCore
+	}
+}*/
 
 dependencies {
     implementation 'org.apache.poi:poi:' + poiVersion
