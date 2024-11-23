@@ -50,6 +50,10 @@ if (!project.hasProperty('sharedStringTable')) {
 	ext.sharedStringTable = 'true'
 }
 
+ext {
+    isWindows = org.gradle.internal.os.OperatingSystem.current().windows
+}
+
 /*
 if (!project.hasProperty('log4jApi')) {
 	ext.log4jApi = '2.24.0'
@@ -132,7 +136,7 @@ tasks.register('runWriteFile', JavaExec) {
 
 	mainClass = 'org.dstadler.poi.TestSXSSFWorkbook'
 	args = [
-			"C:/Temp/test-" + poiVersion + "-" + compressTemp + "-" + sharedStringTable + ".xlsx",
+			(isWindows ? "C:/Temp/test-" : "/tmp/test-") + poiVersion + "-" + compressTemp + "-" + sharedStringTable + ".xlsx",
 			compressTemp,
 			sharedStringTable
 	]
