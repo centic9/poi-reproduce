@@ -31,15 +31,15 @@ public class TestSXSSFWorkbook {
 				" for version " + Version.getVersion() +
 				" and Java " + System.getProperty("java.version"));
 
-		SXSSFWorkbook wb  = new SXSSFWorkbook(new XSSFWorkbook(), windowSize, compressTemp, sharedStringTable);
-		if (zipMode != null) {
-			wb.setZip64Mode(zipMode);
+		try (SXSSFWorkbook wb  = new SXSSFWorkbook(new XSSFWorkbook(), windowSize, compressTemp, sharedStringTable)) {
+			if (zipMode != null) {
+				wb.setZip64Mode(zipMode);
+			}
+
+			wb.createSheet("test")/*.createRow(0).createCell(0).setCellValue("string")*/;
+
+			FileOutputStream fileOutputStream = new FileOutputStream(file);
+			wb.write(fileOutputStream);
 		}
-
-		wb.createSheet("test")/*.createRow(0).createCell(0).setCellValue("string")*/;
-
-		FileOutputStream fileOutputStream = new FileOutputStream(file);
-		wb.write(fileOutputStream);
-		wb.close();
 	}
 }
