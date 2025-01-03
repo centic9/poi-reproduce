@@ -14,15 +14,27 @@ public class TestXMLSlideShow {
 				" for version " + Version.getVersion() +
 				" and Java " + System.getProperty("java.version"));
 
-		System.out.println("Memory before total/max/free: " + Runtime.getRuntime().totalMemory()/1024/1024 + "m/" +
-					Runtime.getRuntime().maxMemory()/1024/1024 + "m/" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "m");
+		System.out.printf("Memory before,   total/max/free: %3dm/%3dm/%3dm%n", Runtime.getRuntime().totalMemory() / 1024 / 1024,
+				Runtime.getRuntime().maxMemory() / 1024 / 1024, Runtime.getRuntime().freeMemory() / 1024 / 1024);
 		try (XMLSlideShow pptx = new XMLSlideShow()) {
 			System.out.println("Slides: " + pptx.getSlides().size());
 
-			System.out.println("Memory when allocated total/max/free: " + Runtime.getRuntime().totalMemory()/1024/1024 + "m/" +
-					Runtime.getRuntime().maxMemory()/1024/1024 + "m/" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "m");
+			System.out.printf("Memory when allocated, total/max/free: %3dm/%3dm/%3dm%n",
+					Runtime.getRuntime().totalMemory() / 1024 / 1024, Runtime.getRuntime().maxMemory() / 1024 / 1024,
+					Runtime.getRuntime().freeMemory() / 1024 / 1024);
+
+			System.gc();
+
+			System.out.printf("Memory when GC,        total/max/free: %3dm/%3dm/%3dm%n", Runtime.getRuntime().totalMemory() / 1024 / 1024,
+					Runtime.getRuntime().maxMemory() / 1024 / 1024, Runtime.getRuntime().freeMemory() / 1024 / 1024);
 		}
-		System.out.println("Memory after total/max/free: " + Runtime.getRuntime().totalMemory()/1024/1024 + "m/" +
-				Runtime.getRuntime().maxMemory()/1024/1024 + "m/" + Runtime.getRuntime().freeMemory() / 1024 / 1024 + "m");
+		System.out.printf("Memory after allocate, total/max/free: %3dm/%3dm/%3dm%n",
+				Runtime.getRuntime().totalMemory() / 1024 / 1024, Runtime.getRuntime().maxMemory() / 1024 / 1024,
+				Runtime.getRuntime().freeMemory() / 1024 / 1024);
+
+		System.gc();
+
+		System.out.printf("Memory after GC,       total/max/free: %3dm/%3dm/%3dm%n", Runtime.getRuntime().totalMemory() / 1024 / 1024,
+				Runtime.getRuntime().maxMemory() / 1024 / 1024, Runtime.getRuntime().freeMemory() / 1024 / 1024);
 	}
 }
