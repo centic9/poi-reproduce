@@ -25,7 +25,7 @@ tasks.withType(JavaCompile).configureEach {
 
 repositories {
     mavenCentral()
-    maven { url 'https://repository.apache.org/content/groups/staging/'}
+    maven { url = 'https://repository.apache.org/content/groups/staging/'}
     // for testing upcoming log4j versions: maven { url 'https://repository.apache.org/content/repositories/orgapachelogging-1308/'}
 }
 
@@ -85,16 +85,16 @@ dependencies {
     implementation files(poiDir + '/build/dist/maven/poi-ooxml-full/poi-ooxml-full-' + poiVersion + '.jar')
     implementation files(poiDir + '/build/dist/maven/poi-scratchpad/poi-scratchpad-' + poiVersion + '.jar')
 
-	implementation 'commons-io:commons-io:2.18.0'
+	implementation 'commons-io:commons-io:2.19.0'
 	implementation 'org.apache.commons:commons-compress:1.27.1'
 	*/
 
 	implementation 'org.apache.logging.log4j:log4j-core:2.24.3'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.12.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.12.1'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.12.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.13.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.13.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.13.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.13.1'
 }
 
 test {
@@ -102,11 +102,11 @@ test {
 }
 
 wrapper {
-    gradleVersion = '8.5'
+    gradleVersion = '8.14.2'
 }
 
 jacoco {
-    toolVersion = '0.8.12'
+    toolVersion = '0.8.13'
 }
 
 tasks.register('runClose', JavaExec) {
