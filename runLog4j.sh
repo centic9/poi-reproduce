@@ -8,7 +8,7 @@
 
 RESULT=
 
-VERSIONS="2.23.1 2.24.0 2.24.1 2.24.2"
+VERSIONS="2.23.1 2.24.0 2.24.1 2.24.2 2.24.3 2.25.0"
 for api in ${VERSIONS};do
   for core in ${VERSIONS};do
     echo
