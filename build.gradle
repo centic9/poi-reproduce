@@ -31,7 +31,7 @@ repositories {
 
 // this is the version of the jar-files of Apache POI that are used for testing
 if (!project.hasProperty('poiVersion')) {
-	ext.poiVersion = '5.5.0'
+	ext.poiVersion = '5.5.1'
 }
 
 if (!project.hasProperty('closeTest')) {
