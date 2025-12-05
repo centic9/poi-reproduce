@@ -2,6 +2,7 @@ package org.dstadler.poi;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import org.apache.commons.compress.archivers.zip.Zip64Mode;
 import org.apache.poi.Version;
@@ -38,8 +39,9 @@ public class TestSXSSFWorkbook {
 
 			wb.createSheet("test")/*.createRow(0).createCell(0).setCellValue("string")*/;
 
-			FileOutputStream fileOutputStream = new FileOutputStream(file);
-			wb.write(fileOutputStream);
+			try (OutputStream fileOutputStream = new FileOutputStream(file)) {
+                wb.write(fileOutputStream);
+            }
 		}
 	}
 }
