@@ -1,0 +1,11 @@
+# Java
+java.lang.Class.getResourceAsStream
+java.awt.font.TextLayout.<init>
+
+# Logging
+org.apache.logging.log4j.LogManager.getLogger
+java.logging/java.util.logging.Logger.getLogger
+
+# XmlBeans
+org.apache.xmlbeans.impl.regex.RegexParser.setLocale
+org.apache.xmlbeans.impl.schema.ClassLoaderResourceLoader.getResourceAsStream
