@@ -3,6 +3,8 @@ package org.dstadler.poi;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import org.apache.commons.compress.archivers.zip.Zip64Mode;
 import org.apache.poi.Version;
@@ -11,7 +13,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class TestSXSSFWorkbook {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args)
+			throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 		if (args.length == 0) {
 			System.err.println("Usage: TestXSSFWorkbook <file> [<bool-compressTemp> <bool-sharedStringTable> <windowSize> <Zip64Mode>]");
 			System.exit(1);
@@ -34,7 +37,10 @@ public class TestSXSSFWorkbook {
 
 		try (SXSSFWorkbook wb  = new SXSSFWorkbook(new XSSFWorkbook(), windowSize, compressTemp, sharedStringTable)) {
 			if (zipMode != null) {
-				wb.setZip64Mode(zipMode);
+				// use reflection as older versions do not provide this method
+				//wb.setZip64Mode(zipMode);
+				Method setZip64Mode = wb.getClass().getDeclaredMethod("setZip64Mode", Zip64Mode.class);
+				setZip64Mode.invoke(wb, zipMode);
 			}
 
 			wb.createSheet("test")/*.createRow(0).createCell(0).setCellValue("string")*/;
