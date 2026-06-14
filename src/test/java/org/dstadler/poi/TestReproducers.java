@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.Version;
@@ -53,7 +54,7 @@ public class TestReproducers {
 	}
 
 	@Test
-	void testSXSSFWorkbook() throws IOException {
+	void testSXSSFWorkbook() throws IOException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
 		File temp = File.createTempFile("TestSXSSFWorkbook", ".xlsx");
 		try {
 			// <file> [<bool-compressTemp> <bool-sharedStringTable> <windowSize> <Zip64Mode>]
@@ -84,5 +85,10 @@ public class TestReproducers {
             assertThrows(AssertionFailedError.class,
                     () -> TestSqrtRegression.main(null));
         }
+	}
+
+	@Test
+	void testHWPFDocument() throws IOException, InvalidFormatException {
+		TestHWPFDocument.main(new String[] { "src/main/resources/file-sample_1MB.doc" });
 	}
 }
