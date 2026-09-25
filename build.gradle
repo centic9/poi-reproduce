@@ -105,11 +105,11 @@ test {
 }
 
 wrapper {
-    gradleVersion = '8.14.4'
+    gradleVersion = '8.14.5'
 }
 
 jacoco {
-    toolVersion = '0.8.14'
+    toolVersion = '0.8.15'
 }
 
 tasks.register('runClose', JavaExec) {
