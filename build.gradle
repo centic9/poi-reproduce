@@ -13,9 +13,14 @@ jar {
     }
 }
 
+// the Java version used for the toolchain, can be overridden with -PjavaVersion=17
+if (!project.hasProperty('javaVersion')) {
+	ext.javaVersion = 11
+}
+
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
+        languageVersion = JavaLanguageVersion.of(javaVersion)
     }
 }
 
@@ -54,12 +59,11 @@ ext {
     isWindows = org.gradle.internal.os.OperatingSystem.current().windows
 }
 
-/*
 if (!project.hasProperty('log4jApi')) {
-	ext.log4jApi = '2.24.0'
+	ext.log4jApi = '2.26.1'
 }
 if (!project.hasProperty('log4jCore')) {
-	ext.log4jCore = '2.24.0'
+	ext.log4jCore = '2.26.1'
 }
 
 // use this if you want to force versions of some third party library for testing
@@ -68,7 +72,7 @@ configurations.configureEach {
 		force 'org.apache.logging.log4j:log4j-api:' + log4jApi
 		force 'org.apache.logging.log4j:log4j-core:' + log4jCore
 	}
-}*/
+}
 
 dependencies {
     implementation 'org.apache.poi:poi:' + poiVersion
@@ -91,7 +95,7 @@ dependencies {
 	implementation 'org.apache.commons:commons-compress:1.28.0'
 	*/
 
-	implementation 'org.apache.logging.log4j:log4j-core:2.26.1'
+	implementation 'org.apache.logging.log4j:log4j-core:' + log4jCore
 
 	// NOTE: Keep at 5.14 until this project is updated to JDK 17
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.14.3'
