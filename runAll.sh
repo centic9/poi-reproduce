@@ -11,22 +11,22 @@ for ver in 4.0.0 4.0.1 4.1.0 4.1.1 4.1.2 5.0.0 5.1.0 5.2.0 5.2.1 5.2.2 5.2.3 5.2
 
   ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=stream
   git co src/main/resources/* | grep -v "^0 "
-  ./gradlew runClose -PpoiVersion= ${ver} -PjavaVersion=${javaVersion} -PcloseTest=file
+  ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=file
   git co src/main/resources/* | grep -v "^0 "
-  ./gradlew runClose -PpoiVersion= ${ver} -PjavaVersion=${javaVersion} -PcloseTest=path
-  git co src/main/resources/* | grep -v "^0 "
-
-  ./gradlew runClose -PpoiVersion= ${ver} -PjavaVersion=${javaVersion} -PcloseTest=opcstream
-  git co src/main/resources/* | grep -v "^0 "
-  ./gradlew runClose -PpoiVersion= ${ver} -PjavaVersion=${javaVersion} -PcloseTest=opcfile
-  git co src/main/resources/* | grep -v "^0 "
-  ./gradlew runClose -PpoiVersion= ${ver} -PjavaVersion=${javaVersion} -PcloseTest=opcpath
+  ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=path
   git co src/main/resources/* | grep -v "^0 "
 
-  ./gradlew runClose -PpoiVersion= ${ver} -PjavaVersion=${javaVersion} -PcloseTest=specialstream
+  ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=opcstream
   git co src/main/resources/* | grep -v "^0 "
-  ./gradlew runClose -PpoiVersion= ${ver} -PjavaVersion=${javaVersion} -PcloseTest=specialfile
+  ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=opcfile
   git co src/main/resources/* | grep -v "^0 "
-  ./gradlew runClose -PpoiVersion= ${ver} -PjavaVersion=${javaVersion} -PcloseTest=specialpath
+  ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=opcpath
+  git co src/main/resources/* | grep -v "^0 "
+
+  ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=specialstream
+  git co src/main/resources/* | grep -v "^0 "
+  ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=specialfile
+  git co src/main/resources/* | grep -v "^0 "
+  ./gradlew runClose -PpoiVersion=${ver} -PjavaVersion=${javaVersion} -PcloseTest=specialpath
   git co src/main/resources/* | grep -v "^0 "
 done
