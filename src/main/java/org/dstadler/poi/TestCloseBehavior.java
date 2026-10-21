@@ -1,10 +1,12 @@
 package org.dstadler.poi;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.apache.poi.Version;
+import org.apache.poi.ooxml.POIXMLException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.openxml4j.opc.PackageAccess;
@@ -56,16 +58,28 @@ public class TestCloseBehavior {
             case "specialstream":
                 try (XSSFWorkbook wb = new XSSFWorkbook(new FileInputStream("src/main/resources/clusterfuzz-testcase-minimized-POIXWPFFuzzer-4791943399604224.docx"))) {
                     wb.getSheetAt(0);
+
+                    throw new IllegalStateException("Expected an exception, but did not catch one");
+                } catch (POIXMLException | EOFException e) {
+                    System.out.println("Caught expected exception: " + e);
                 }
                 break;
             case "specialfile":
                 try (XSSFWorkbook wb = new XSSFWorkbook(new File("src/main/resources/clusterfuzz-testcase-minimized-POIXWPFFuzzer-4791943399604224.docx"))) {
                     wb.getSheetAt(0);
+
+                    throw new IllegalStateException("Expected an exception, but did not catch one");
+                } catch (POIXMLException | EOFException e) {
+                    System.out.println("Caught expected exception: " + e);
                 }
                 break;
             case "specialpath":
                 try (XSSFWorkbook wb = new XSSFWorkbook("src/main/resources/clusterfuzz-testcase-minimized-POIXWPFFuzzer-4791943399604224.docx")) {
                     wb.getSheetAt(0);
+
+                    throw new IllegalStateException("Expected an exception, but did not catch one");
+                } catch (POIXMLException | EOFException e) {
+                    System.out.println("Caught expected exception: " + e);
                 }
                 break;
             default:
