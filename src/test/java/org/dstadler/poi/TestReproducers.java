@@ -9,14 +9,13 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.Version;
-import org.apache.poi.ooxml.POIXMLException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-public class TestReproducers {
+class TestReproducers {
 	private static File save;
 
 	@BeforeAll
@@ -40,12 +39,9 @@ public class TestReproducers {
 		TestCloseBehavior.main(new String[] {"opcfile"});
 		TestCloseBehavior.main(new String[] {"opcpath"});
 
-		assertThrows(POIXMLException.class,
-				() -> TestCloseBehavior.main(new String[] {"specialstream"}));
-		assertThrows(POIXMLException.class,
-				() -> TestCloseBehavior.main(new String[] {"specialfile"}));
-		assertThrows(POIXMLException.class,
-				() -> TestCloseBehavior.main(new String[] {"specialpath"}));
+		TestCloseBehavior.main(new String[] {"specialstream"});
+		TestCloseBehavior.main(new String[] {"specialfile"});
+		TestCloseBehavior.main(new String[] {"specialpath"});
 	}
 
 	@Test
@@ -79,7 +75,8 @@ public class TestReproducers {
 	void testSqrt() throws IOException {
         // This test only works with POI versions before 5.2.1
         // see bug 69892 for discussion
-        if (Version.getVersion().compareTo("5.2.1") < 0) {
+        if (Version.getVersion().compareTo("5.2.1") < 0 ||
+				Version.getVersion().compareTo("6.0.0") >= 0) {
             TestSqrtRegression.main(null);
         } else {
             assertThrows(AssertionFailedError.class,
