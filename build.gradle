@@ -15,7 +15,7 @@ jar {
 
 // the Java version used for the toolchain, can be overridden with -PjavaVersion=17
 if (!project.hasProperty('javaVersion')) {
-	ext.javaVersion = 11
+	ext.javaVersion = 17
 }
 
 java {
@@ -36,7 +36,7 @@ repositories {
 
 // this is the version of the jar-files of Apache POI that are used for testing
 if (!project.hasProperty('poiVersion')) {
-	ext.poiVersion = '5.5.1'
+	ext.poiVersion = '6.0.0'
 }
 
 if (!project.hasProperty('closeTest')) {
